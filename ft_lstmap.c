@@ -6,7 +6,7 @@
 /*   By: michi <michi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/12 12:24:09 by michi             #+#    #+#             */
-/*   Updated: 2024/05/13 00:08:43 by michi            ###   ########.fr       */
+/*   Updated: 2024/05/13 00:37:17 by michi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,20 +22,20 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
 	t_list	*n_list;
 	t_list	*n_node;
-	void	*list;
 
 	if (!lst || !f || !del)
 		return (NULL);
 	n_list = NULL;
 	while (lst)
 	{
-		list = f(lst->content);
-		n_node = ft_lstnew(list);
+		if (f)
+			n_node = ft_lstnew(f(lst->content));
+		else
+			n_node = ft_lstnew(lst->content);
 		if (!n_node)
 		{
-			del(list);
 			ft_lstclear(&n_list, (*del));
-			return (n_list);
+			return (NULL);
 		}
 		ft_lstadd_back(&n_list, n_node);
 		lst = lst->next;
