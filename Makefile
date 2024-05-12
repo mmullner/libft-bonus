@@ -6,7 +6,7 @@
 #    By: michi <michi@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/28 05:51:41 by michi             #+#    #+#              #
-#    Updated: 2024/05/12 22:11:48 by michi            ###   ########.fr        #
+#    Updated: 2024/05/12 23:47:26 by michi            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,9 +31,6 @@ CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 AR = ar rcs
 
-$(NAME_B): $(OBJECTS_B)
-	$(AR) $(NAME) $(OBJECTS_B)
-
 all: $(NAME)
 
 $(NAME): $(OBJECTS)
@@ -50,7 +47,6 @@ clean:
 
 fclean: clean
 	rm -f  $(NAME)
-	rm -f  $(NAME_B)
 
 re: fclean all
 
